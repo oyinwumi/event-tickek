@@ -1,0 +1,85 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+.App{
+  width: 50%;
+  margin: 2rem auto;
+  background-color: rgb(160, 102, 214);
+  color: #FFFFFF;
+  padding: 1rem;
+ position: relative;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+h1{
+  text-align: center;
+}
+
+
+.fa-solid{
+color: #FFFFFF;
+}
+
+table{
+  border: 2px solid white;
+  border-collapse: collapse;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  width: 90%;
+}
+
+th,td{
+  border-bottom: 2px solid white;
+
+}
+
+.decrease-button, .increase-button{
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  justify-content: center;
+  color: rgb(47, 4, 87);
+  cursor: pointer;
+  margin: 15px;
+}
+
+.add-button,.cart-btn {
+  width: 100px;
+  background-color:rgb(47, 4, 87) ;
+  color: #FFFFFF;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-btn{
+  width: 120px;
+ padding:10px;
+ position: relative;
+left: 70%;
+}
