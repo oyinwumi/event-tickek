@@ -77,9 +77,9 @@ th,td{
   cursor: pointer;
 }
 
-/* .cart-btn{
-  width: 120px;
- padding:10px;
+.cart-btn{
+ padding:8px;
  position: relative;
-left: 70%;
-} */
+left: 60%;
+margin-top: 15px;
+}
