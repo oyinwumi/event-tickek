@@ -1,17 +1,6 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-const TicketList = () => {
- 
- 
- const  [tickets , setTickets] = useState([
-    {ticketCaterogries: "Regular", Number: 0, unitPrice: "#10,000"},
-    {ticketCaterogries: "Vip", Number: 0, unitPrice: "#20,000"},
-    {ticketCaterogries: "Vvip", Number: 0, unitPrice: "#30,000"},
-    {ticketCaterogries: "Table", Number: 0, unitPrice: "#50,000"},
-])
-
-const[cart, setCart] = useState([])
-// const[page, setPage] = useState('tickets')
+const TicketList = ({tickets, setTickets, cart, setCart}) => {
 
  const decreamentValue = (key)=>{
     let filtered = tickets.map((ticket, index)=>{
@@ -38,9 +27,53 @@ const[cart, setCart] = useState([])
      setTickets(filtered);
  }
 
- const addToCart = (tickets ) =>{
-   setCart([...cart, tickets])
+ const addToCart = (category, ticket ) =>{
+    let foundArray = cart.filter(c=>c.ticketCaterogries === category)
+    // console.log(foundArray)
+
+    if(foundArray && foundArray.length > 0) {
+        // if we found an object with the same category name
+        let selectedTicket = tickets.filter(ticket=>{
+            return foundArray[0].Name === ticket.name
+        })
+
+        // If the number of the ticket we are adding = 0, remove it from the cart instead
+        if(selectedTicket[0].Number === 0) {
+            
+            let filtered = cart.filter(c=>{
+                return c.ticketCaterogries !== category
+            })
+            console.log('add1')
+            setCart(filtered)
+            return false
+        }
+
+        // If the number is greater than 1, add it to the cart and update its number
+        else {
+            foundArray[0].Number = selectedTicket[0].Number
+
+            let finalResult = cart.map(c=>{
+                if(c.ticketCaterogries === category){
+                    c = foundArray[0]
+                }
+                return c
+            })
+            console.log('add2')
+            setCart(finalResult)
+        }
+    }
+    else {
+        // If we do not find any object with the same category name
+        console.log('add3')
+        setCart([...cart, ticket])
+    }
+//    
  }
+
+ useEffect(()=>{
+    console.log(cart)
+ }, [cart])
+
   return (
     <div>
         
@@ -65,7 +98,7 @@ const[cart, setCart] = useState([])
                     <td> {<button className='decrease-button' onClick={ () => decreamentValue(key)}>-</button>}
                     <span>{ticket.Number}</span>
                     {<button className='increase-button' onClick={()=>increamentValue(key)}>+</button>}</td>
-                    <td>{ticket.unitPrice} {<button className="add-button" onClick={() =>addToCart(tickets)}>Add</button>}</td>
+                    <td>#{(ticket.unitPrice * ticket.Number).toLocaleString()} {<button className="add-button" onClick={() =>addToCart(ticket.ticketCaterogries, ticket)}>Add</button>}</td>
                     
                 </tr>
             )
