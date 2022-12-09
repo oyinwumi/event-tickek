@@ -27,7 +27,7 @@ const[cart, setCart] = useState([])
           </div>
           {
             <header>
-            <button className='cart-btn'>Go to cart ({cart.length})</button>
+            <button className='cart-btn'>Unit ({cart.length})</button>
           </header>
     }
         </div>
