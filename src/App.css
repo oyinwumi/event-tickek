@@ -33,10 +33,6 @@ h1{
 }
 
 
-.fa-solid{
-color: #FFFFFF;
-}
-
 table{
   border: 2px solid white;
   border-collapse: collapse;
@@ -131,4 +127,16 @@ th,td{
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
+}
+
+@media(min-width:320px) and (max-width:500px){
+  .App{
+    width: 100%;
+    margin: 10px;
+  }
+  .add-button,.cart-btn {
+    width: 70px;
+    padding: 3px;
+   
+  }
 }
