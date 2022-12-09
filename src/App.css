@@ -17,7 +17,8 @@ body{
   background-color: rgb(160, 102, 214);
   color: #FFFFFF;
   padding: 1rem;
- position: relative;
+  position: relative;
+  
 }
 
 .nav{
@@ -80,6 +81,57 @@ th,td{
 .cart-btn{
  padding:8px;
  position: relative;
-left: 60%;
-margin-top: 15px;
+ margin-top: 15px;
+}
+
+.links{
+  display: flex;
+  margin: 2rem ;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-bar{
+  display: flex;
+  /* padding-left: 10px; */
+}
+ .nav-link{
+  font-size: 20px;
+  text-decoration: none;
+  padding-right: 20px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: 700;
+}
+.nav-link:hover{
+  color:rgb(47, 4, 87) ;
+}
+
+.cart-card{
+  width: 300px;
+  height: 150px;
+  color:#FFFFFF ;
+  border:  1px solid rgb(47, 4, 87) ;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  
+}
+.cart-card p{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.cart-card p span{
+  font-size: 15px;
+}
+
+.cart-container h1{
+  margin-bottom: 20px;
+}
+
+.cart-holder{
+  display: flex;
+  flex-wrap: wrap;
+  m
 }

@@ -1,18 +1,7 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-const TicketList = () => {
+const TicketList = ({tickets , setTickets , cart, setCart}) => {
  
- 
- const  [tickets , setTickets] = useState([
-    {ticketCaterogries: "Regular", Number: 0, unitPrice: "#10,000"},
-    {ticketCaterogries: "Vip", Number: 0, unitPrice: "#20,000"},
-    {ticketCaterogries: "Vvip", Number: 0, unitPrice: "#30,000"},
-    {ticketCaterogries: "Table", Number: 0, unitPrice: "#50,000"},
-])
-
-const[cart, setCart] = useState([])
-// const[page, setPage] = useState('tickets')
-
  const decreamentValue = (key)=>{
     let filtered = tickets.map((ticket, index)=>{
         if(key=== index){
@@ -38,18 +27,55 @@ const[cart, setCart] = useState([])
      setTickets(filtered);
  }
 
- const addToCart = (tickets ) =>{
-   setCart([...cart, tickets])
+ const addToCart = ( category , ticket ) =>{
+    let ticketArray = cart.filter(value => value.ticketCaterogries ===category)
+    if(ticketArray && ticketArray.length > 0) {
+        let selectedTicket = tickets.filter(ticket => {
+            return ticketArray[0].Name === ticket.name
+        })
+    if(selectedTicket[0].Number === 0){
+        let filtered = cart.filter(value => {
+            return value.ticketCaterogries !== category
+        })
+       
+        setCart(filtered)
+        return false
+    }
+    else{
+        ticketArray[0].Number = selectedTicket[0].Number
+
+        let finalResult = cart.map(value =>{
+            if(value.ticketCaterogries === category){
+                value =ticketArray[0]
+            }
+            return value
+        })
+        setCart(finalResult)
+
+    }
+  
+    }
+    else{
+        setCart([...cart, ticket])
+    }
  }
+
+ useEffect(()=>{
+   console.log(cart)
+ }, [cart])
+
+//  const deleteItem = () =>{
+//     setCart('')
+//  }
   return (
     <div>
         
-    {
+    {/* {
             <header>
             <button className='cart-btn'>Go to cart ({cart.length})</button>
           </header>
-    }
-    {/* {page === 'tickets' && (<></>)} */}
+    } */}
+   
    {
           <table>
              <tr>
@@ -65,7 +91,8 @@ const[cart, setCart] = useState([])
                     <td> {<button className='decrease-button' onClick={ () => decreamentValue(key)}>-</button>}
                     <span>{ticket.Number}</span>
                     {<button className='increase-button' onClick={()=>increamentValue(key)}>+</button>}</td>
-                    <td>{ticket.unitPrice} {<button className="add-button" onClick={() =>addToCart(tickets)}>Add</button>}</td>
+                    <td>#{(ticket.unitPrice * ticket.Number).toLocaleString()} {<button className="add-button" 
+                    onClick={() =>addToCart(ticket.ticketCaterogries, ticket)}>Add</button>}</td>
                     
                 </tr>
             )
