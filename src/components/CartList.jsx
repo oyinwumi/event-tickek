@@ -15,6 +15,7 @@ const CartList = ({cart}) => {
                     <p>Quantity: <span>{item.Number}</span></p>
                     <p> Total Amount: <span>#{(item.unitPrice * item.Number).toLocaleString()}</span></p>
                 </div>
+               
             )
           })
             
